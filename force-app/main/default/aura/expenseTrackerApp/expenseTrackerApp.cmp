@@ -1,0 +1,11 @@
+<aura:component controller="transactionController" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <aura:attribute name="activeSections" type="List" default="['A','C']" />
+    <aura:attribute name="transactions" type="Transaction__c[]"/>
+    <aura:attribute name="transaction" type="Transaction__c"/>
+    <aura:attribute name="loading" type="Boolean" default="false" />
+    <div>Test page</div>
+
+</aura:component>	
