@@ -12,4 +12,7 @@
         });
         $A.enqueueAction(action);
     },
+    handleSectionToggle: function (cmp, event) {
+
+    },
 })
