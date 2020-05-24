@@ -1,34 +1,27 @@
 <aura:component>
-
-    <aura:attribute name="transactions" type="Transaction__c[]"/>
-
+    <aura:attribute name="transactions" type="Transaction__c[]" />
+    <aura:attribute
+        name="headers"
+        type="List"
+        default="['Date','Category', 'Comment', 'Value', 'Operation']"
+    />
 
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
         <thead>
             <tr class="slds-line-height_reset">
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Date">Date</div>
-                </th>
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Category">Category</div>
-                </th>
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Comment">Comment</div>
-                </th>
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Value">Value</div>
-                </th>
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Operation">Operation</div>
-                </th>
+                <aura:iteration items="{!v.headers}" var="header">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="{!header}"
+                            >{!header}</div
+                        >
+                    </th>
+                </aura:iteration>
             </tr>
         </thead>
         <tbody>
             <aura:iteration items="{!v.transactions}" var="transaction">
-                <c:tableRow transaction="{!transaction}"/>
+                <c:tableRow transaction="{!transaction}" />
             </aura:iteration>
         </tbody>
-      </table>
-
-
-</aura:component>	
+    </table>
+</aura:component>
