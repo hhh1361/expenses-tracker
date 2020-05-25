@@ -1,15 +1,15 @@
-<aura:component
-    controller="transactionController"
-    implements="flexipage:availableForAllPageTypes"
-    access="global"
->
+<aura:component controller="transactionController" implements="flexipage:availableForAllPageTypes" access="global">
     <!-- handlers-->
     <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
-
+    <aura:handler
+        name="updateTransactionList"
+        event="c:updateTransactionList"
+        action="{!c.handleUpdateTransactionList}"
+    />
     <!-- attributes -->
-    <aura:attribute name="activeSections" type="List" default="['A','C']" />
     <aura:attribute name="transactions" type="Transaction__c[]" />
     <aura:attribute name="transaction" type="Transaction__c" />
+    <aura:attribute name="activeSections" type="List" default="['A','C']" />
     <aura:attribute name="isLoading" type="Boolean" default="true" />
 
     <lightning:card>
@@ -19,13 +19,11 @@
             activeSectionName="{! v.activeSections }"
         >
             <lightning:accordionSection name="A" label="Create Transaction">
-                <!-- <c:carInputForm operation="Create"/>  -->
-                first section
+                <c:input operation="Create" />
             </lightning:accordionSection>
 
             <lightning:accordionSection name="B" label="Change Transaction">
-                <!-- <c:carInputForm operation="Update" car="{! v.car}"/>  -->
-                second section
+                <c:input operation="Update" transaction="{! v.transaction}" />
             </lightning:accordionSection>
 
             <lightning:accordionSection name="C" label="Transactions table">

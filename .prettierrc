@@ -10,9 +10,8 @@
             "options": { "parser": "html" }
         }
     ],
-    "printWidth": 80,
+    "printWidth": 120,
     "tabWidth": 4,
     "singleQuote": true,
-    "jsxBracketSameLine": false,
-    "parser": "flow"
+    "jsxBracketSameLine": false
 }

@@ -3,30 +3,21 @@
 
     <tr class="slds-hint-parent">
         <th data-label="Date" scope="row">
-            <div class="slds-truncate" title="Cloudhub">
+            <div class="slds-truncate" title="Date">
                 {!v.transaction.Date__c}
             </div>
         </th>
         <td data-label="Category">
-            <div class="slds-truncate" title="Model"
-                >{!v.transaction.Category__c}</div
-            >
+            <div class="slds-truncate" title="Model">{!v.transaction.Category__c}</div>
         </td>
         <td data-label="Comment">
-            <div class="slds-truncate" title="Power"
-                >{!v.transaction.Comment__c}</div
-            >
+            <div class="slds-truncate" title="Power">{!v.transaction.Comment__c}</div>
         </td>
         <td data-label="Value">
-            <div class="slds-truncate" title="Price"
-                >{!v.transaction.Value__c}</div
-            >
+            <div class="slds-truncate" title="Price">{!v.transaction.Value__c}</div>
         </td>
         <td>
-            <lightning:buttonMenu
-                alternativeText="Show menu"
-                onselect="{!c.onHandleSelect}"
-            >
+            <lightning:buttonMenu alternativeText="Show menu" onselect="{!c.onHandleSelect}">
                 <lightning:menuItem label="Change" value="Change" />
                 <lightning:menuItem label="Copy" value="Copy" />
                 <lightning:menuItem label="Delete" value="Delete" />

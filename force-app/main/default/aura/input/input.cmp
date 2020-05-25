@@ -1,1 +1,37 @@
-<aura:component> </aura:component>
+<aura:component controller="transactionController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:registerEvent name="updateTransactionList" type="c:updateTransactionList" />
+
+    <aura:attribute name="operation" type="String" />
+    <aura:attribute
+        name="transaction"
+        type="Transaction__c"
+        default="{'sobjectType' : 'Transaction__c',
+                Date__c: '',
+                Category__c: 'Food',
+                Comment__c : '',
+                Value__c : '-5'}"
+    />
+    <!-- in case of adding new picklist values -->
+    <aura:attribute name="options" type="List" />
+
+    <div class="slds-p-around_medium">
+        <ui:inputDate
+            aura:id="transaction"
+            label="Date"
+            class="field"
+            displayDatePicker="true"
+            value="{!v.transaction.Date__c}"
+            required="true"
+        />
+        <lightning:select aura:id="transaction" label="Category" required="true" value="{!v.transaction.Category__c}">
+            <aura:iteration items="{!v.options}" var="option">
+                <option text="{!option.label}" value="{!option.label}" selected="{!option.selected}" />
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input aura:id="transaction" value="{!v.transaction.Comment__c}" label="Comment" />
+        <lightning:input aura:id="transaction" value="{!v.transaction.Value__c}" label="Value" required="true" />
+        <lightning:input type="button" value="{! v.operation}" class="slds-m-top_medium" onclick="{!c.handleSubmit}" />
+    </div>
+</aura:component>
