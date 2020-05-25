@@ -7,6 +7,8 @@
 
     <!-- attrtibutes -->
     <aura:attribute name="operation" type="String" />
+    <aura:attribute name="isModal" type="Boolean" default="false" />
+    <aura:attribute name="isWarning" type="Boolean" default="false" />
     <aura:attribute
         name="transaction"
         type="Transaction__c"
@@ -20,13 +22,12 @@
     <aura:attribute name="options" type="List" />
 
     <div class="slds-p-around_medium">
-        <ui:inputDate
+        <lightning:input
+            type="date"
             aura:id="transaction"
             label="Date"
-            class="field"
-            displayDatePicker="true"
-            value="{!v.transaction.Date__c}"
             required="true"
+            value="{!v.transaction.Date__c}"
         />
         <lightning:select aura:id="transaction" label="Category" required="true" value="{!v.transaction.Category__c}">
             <aura:iteration items="{!v.options}" var="option">
@@ -37,4 +38,40 @@
         <lightning:input aura:id="transaction" value="{!v.transaction.Value__c}" label="Value" required="true" />
         <lightning:input type="button" value="{! v.operation}" class="slds-m-top_medium" onclick="{!c.handleSubmit}" />
     </div>
+
+    <aura:if isTrue="{! v.isModal }">
+        <section
+            role="dialog"
+            tabindex="-1"
+            class="slds-modal slds-fade-in-open slds-modal_small"
+            aria-labelledby="modal-heading-01"
+            aria-modal="true"
+            aria-describedby="modal-content-id-1"
+        >
+            <div class="slds-modal__container">
+                <aura:if isTrue="{!v.isWarning}">
+                    <header class="slds-modal__header">
+                        <h3 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                            Please, complete all required fields.
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>
+                            In order to continue you need to complete all required fields.
+                        </p>
+                    </div>
+                    <aura:set attribute="else">
+                        <header class="slds-modal__header">
+                            <h3 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Transaction saved.</h3>
+                        </header>
+                    </aura:set>
+                </aura:if>
+
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" onclick="{! c.closeModal}">OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" onkeypress="{!c.handleKeyPress}"></div>
+    </aura:if>
 </aura:component>

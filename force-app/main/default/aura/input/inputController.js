@@ -20,17 +20,16 @@
     handleSubmit: function(component, event, helper) {
         // save/change transaction + update records table
         const transaction = component.get('v.transaction');
-        helper.saveTransaction(component, transaction);
-
-        const operation = component.get('v.operation');
-        if (operation === 'Create') {
-            component.set('v.transaction', {
-                sobjectType: 'Transaction__c',
-                Date__c: '',
-                Category__c: 'Food',
-                Comment__c: '',
-                Value__c: Math.ceil(Math.random() * -10)
-            });
+        if (transaction.Date__c && transaction.Category__c && transaction.Value__c) {
+            helper.saveTransaction(component, transaction);
+        } else {
+            component.set('v.isWarning', true);
+            component.set('v.isModal', true);
         }
+    },
+
+    closeModal: function(component, event, helper) {
+        component.set('v.isModal', false);
+        component.set('v.isWarning', false);
     }
 });

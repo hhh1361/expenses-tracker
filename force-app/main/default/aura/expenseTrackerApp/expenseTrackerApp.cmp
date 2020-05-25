@@ -1,16 +1,9 @@
 <aura:component controller="TransactionController" implements="flexipage:availableForAllPageTypes" access="global">
-    <!-- events -->
-    <aura:registerEvent name="retranslateEvent" type="c:retranslateEvent" />
     <!-- handlers -->
     <aura:handler
         name="prepareTransactionForUpdate"
         event="c:prepareTransactionForUpdate"
         action="{!c.handlePrepareTransactionForUpdate}"
-    />
-    <aura:handler
-        name="updateTransactionList"
-        event="c:updateTransactionList"
-        action="{!c.handleUpdateTransactionList}"
     />
     <!-- attributes -->
     <aura:attribute name="transaction" type="Transaction__c" />
