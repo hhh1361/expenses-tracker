@@ -51,7 +51,7 @@
             <div class="slds-modal__container">
                 <aura:if isTrue="{!v.isWarning}">
                     <header class="slds-modal__header">
-                        <h3 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
                             Please, complete all required fields.
                         </h2>
                     </header>

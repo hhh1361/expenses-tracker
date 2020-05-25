@@ -1,8 +1,9 @@
 ({
-    handleSectionToggle: function(cmp, event) {},
     handlePrepareTransactionForUpdate: function(component, event, helper) {
+        console.log(JSON.parse(JSON.stringify(component.get('v.activeSection'))));
         const transaction = event.getParam('transaction');
+        component.set('v.activeSection', 'change');
         component.set('v.transaction', transaction);
-        component.set('v.activeSections', ['B', 'C']);
+        console.log(JSON.parse(JSON.stringify(component.get('v.activeSection'))));
     }
 });

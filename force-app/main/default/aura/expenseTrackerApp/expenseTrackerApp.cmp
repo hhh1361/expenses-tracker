@@ -7,25 +7,19 @@
     />
     <!-- attributes -->
     <aura:attribute name="transaction" type="Transaction__c" />
-    <aura:attribute name="activeSections" type="List" default="['A','C']" />
+    <aura:attribute name="activeSection" type="String" default="create" />
 
     <lightning:card>
-        <lightning:accordion
-            allowMultipleSectionsOpen="true"
-            onsectiontoggle="{! c.handleSectionToggle }"
-            activeSectionName="{! v.activeSections }"
-        >
-            <lightning:accordionSection name="A" label="Create Transaction">
+        <lightning:tabset selectedTabId="{! v.activeSection}">
+            <lightning:tab label="Create transaction" id="create">
                 <c:input operation="Create" />
-            </lightning:accordionSection>
-
-            <lightning:accordionSection name="B" label="Change Transaction">
+            </lightning:tab>
+            <lightning:tab label="Change transaction" id="change">
                 <c:input operation="Update" transaction="{! v.transaction}" />
-            </lightning:accordionSection>
-
-            <lightning:accordionSection name="C" label="Transactions table">
+            </lightning:tab>
+            <lightning:tab label="Transaction table" id="table">
                 <c:table />
-            </lightning:accordionSection>
-        </lightning:accordion>
+            </lightning:tab>
+        </lightning:tabset>
     </lightning:card>
 </aura:component>

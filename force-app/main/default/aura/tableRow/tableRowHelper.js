@@ -1,9 +1,7 @@
 ({
     doEdit: function(component, transaction) {
         const createEvent = component.getEvent('prepareTransactionForUpdate');
-        createEvent.setParams({
-            transaction: transaction
-        });
+        createEvent.setParams({ transaction });
         createEvent.fire();
     },
 
