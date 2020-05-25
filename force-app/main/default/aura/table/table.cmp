@@ -1,5 +1,10 @@
-<aura:component>
+<aura:component controller="TransactionController">
+    <!-- handlers -->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler event="c:updateTransactionList" action="{!c.handleUpdateTransactionList}" />
+    <!-- attributes -->
     <aura:attribute name="transactions" type="Transaction__c[]" />
+    <aura:attribute name="isLoading" type="Boolean" default="true" />
     <aura:attribute name="headers" type="List" default="['Date','Category', 'Comment', 'Value', 'Operation']" />
 
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
@@ -18,4 +23,7 @@
             </aura:iteration>
         </tbody>
     </table>
+    <aura:if isTrue="{! v.isLoading }">
+        <lightning:spinner alternativeText="Loading" />
+    </aura:if>
 </aura:component>

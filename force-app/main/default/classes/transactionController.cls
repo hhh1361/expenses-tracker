@@ -1,4 +1,4 @@
-public with sharing class transactionController {
+public with sharing class TransactionController {
     @AuraEnabled
     public static List<Transaction__c> getTransactionList() {
         return [SELECT Id, Name, Category__c, Comment__c, Date__c, Value__c FROM Transaction__c];
@@ -21,5 +21,20 @@ public with sharing class transactionController {
         System.debug(transactionItem);
         upsert transactionItem;
         return transactionItem;
+    }
+
+    @AuraEnabled
+    public static Transaction__c deleteTransaction(Transaction__c transactionItem) {
+        System.debug('delete');
+        delete transactionItem;
+        System.debug(transactionItem);
+        return transactionItem;
+    }
+
+    @AuraEnabled
+    public static Transaction__c cloneTransaction(Transaction__c transactionItem) {
+        Transaction__c transactionCopy = transactionItem.clone(false, false, false, false);
+        upsert transactionCopy;
+        return transactionCopy;
     }
 }

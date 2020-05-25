@@ -1,4 +1,8 @@
-<aura:component>
+<aura:component controller="TransactionController">
+    <!-- events -->
+    <aura:registerEvent name="updateTransactionList" type="c:updateTransactionList" />
+    <aura:registerEvent name="prepareTransactionForUpdate" type="c:prepareTransactionForUpdate" />
+    <!-- attributes -->
     <aura:attribute name="transaction" type="Transaction__c" />
 
     <tr class="slds-hint-parent">

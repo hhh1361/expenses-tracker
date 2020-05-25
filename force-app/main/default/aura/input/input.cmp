@@ -1,8 +1,11 @@
-<aura:component controller="transactionController">
-    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
-
+<aura:component controller="TransactionController">
+    <!-- events -->
     <aura:registerEvent name="updateTransactionList" type="c:updateTransactionList" />
 
+    <!-- handlers -->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <!-- attrtibutes -->
     <aura:attribute name="operation" type="String" />
     <aura:attribute
         name="transaction"

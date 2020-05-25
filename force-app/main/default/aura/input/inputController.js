@@ -1,5 +1,6 @@
 ({
     doInit: function(component, event, helper) {
+        // get category-field picklist values
         const action = component.get('c.getPicklistValues');
         const selected = component.get('v.transaction.Category__c');
         action.setCallback(this, function(response) {
@@ -15,12 +16,21 @@
         });
         $A.enqueueAction(action);
     },
+
     handleSubmit: function(component, event, helper) {
+        // save/change transaction + update records table
         const transaction = component.get('v.transaction');
-        console.log('transaction in controller: ', JSON.parse(JSON.stringify(transaction)));
         helper.saveTransaction(component, transaction);
 
-        const createEvent = component.getEvent('updateTransactionList');
-        createEvent.fire();
+        const operation = component.get('v.operation');
+        if (operation === 'Create') {
+            component.set('v.transaction', {
+                sobjectType: 'Transaction__c',
+                Date__c: '',
+                Category__c: 'Food',
+                Comment__c: '',
+                Value__c: Math.ceil(Math.random() * -10)
+            });
+        }
     }
 });
