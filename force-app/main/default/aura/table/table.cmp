@@ -4,6 +4,7 @@
     <aura:handler event="c:updateTransactionList" action="{!c.handleUpdateTransactionList}" />
     <!-- attributes -->
     <aura:attribute name="transactions" type="Transaction__c[]" />
+    <aura:attribute name="backup" type="Transaction__c[]" />
     <aura:attribute name="isLoading" type="Boolean" default="true" />
     <aura:attribute name="balance" type="String" default="true" />
     <aura:attribute name="headers" type="List" />
@@ -11,7 +12,10 @@
 
     <div class="slds-box slds-grid slds-grid_align-spread">
         <div class="row">
-            <input type="text" value="{! v.balance}" disabled="true" />
+            <lightning:input type="text" value="{! v.balance}" disabled="true" />
+        </div>
+        <div onchange="{! c.handleSearch }">
+            <lightning:input aura:id="search" name="search" type="search" placeholder="Search date" />
         </div>
     </div>
 

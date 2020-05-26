@@ -32,6 +32,21 @@
         const array = helper.sort(currentArray, options);
 
         component.set('v.transactions', array);
+        component.set('v.backup', array);
         component.set('v.sortOptions', result);
+    },
+    handleSearch: function(component, event) {
+        const backup = component.get('v.backup');
+        const searchValue = component.find('search').get('v.value');
+
+        // filter array
+        const result = backup.filter(i => i.Date__c.includes(searchValue));
+
+        if (searchValue.length) {
+            component.set('v.transactions', result);
+        } else {
+            // restore full array
+            component.set('v.transactions', backup);
+        }
     }
 });
