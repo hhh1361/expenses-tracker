@@ -6,7 +6,8 @@
     <aura:attribute name="transactions" type="Transaction__c[]" />
     <aura:attribute name="isLoading" type="Boolean" default="true" />
     <aura:attribute name="balance" type="String" default="true" />
-    <aura:attribute name="headers" type="List" default="['Date','Category', 'Comment', 'Value', 'Operation']" />
+    <aura:attribute name="headers" type="List" />
+    <aura:attribute name="sortOptions" type="Object" />
 
     <div class="slds-box slds-grid slds-grid_align-spread">
         <div class="row">
@@ -19,7 +20,12 @@
             <tr class="slds-line-height_reset">
                 <aura:iteration items="{!v.headers}" var="header">
                     <th class="" scope="col">
-                        <div class="slds-truncate" title="{!header}">{!header}</div>
+                        <lightning:button
+                            variant="base"
+                            name="{!header}"
+                            label="{!header}"
+                            onclick="{!c.handleHeaderClick}"
+                        />
                     </th>
                 </aura:iteration>
             </tr>

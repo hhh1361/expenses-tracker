@@ -6,7 +6,8 @@
         action.setCallback(this, function(response) {
             const state = response.getState();
             if (state === 'SUCCESS') {
-                const sortedArray = helper.sort(response.getReturnValue());
+                const options = component.get('v.sortOptions');
+                const sortedArray = helper.sort(response.getReturnValue(), options);
                 component.set('v.transactions', sortedArray);
                 component.set('v.balance', `Current balance: ${sortedArray.reduce((acc, i) => acc + i.Value__c, 0)}`);
                 component.set('v.isLoading', false);
@@ -18,15 +19,33 @@
         $A.enqueueAction(action);
     },
 
-    sort: function(array) {
+    sort: function(array, options) {
+        const { field, reverse } = options;
+        const label = field + '__c';
+
         return array.sort((a, b) => {
-            if (a.Date__c > b.Date__c) {
-                return 1;
-            } else if (a.Date__c < b.Date__c) {
-                return -1;
-            } else {
+            if (a[label] === undefined && b[label] === undefined) {
                 return 0;
             }
+
+            if (a[label] !== undefined && b[label] === undefined) {
+                return -1;
+            }
+
+            if (a[label] === undefined && b[label] !== undefined) {
+                return 1;
+            }
+
+            if (a[label] !== undefined && b[label] !== undefined) {
+                if (a[label] < b[label]) {
+                    return reverse ? -1 : 1;
+                } else if (a[label] > b[label]) {
+                    return reverse ? 1 : -1;
+                } else {
+                    return 0;
+                }
+            }
+            return 0;
         });
     }
 });
