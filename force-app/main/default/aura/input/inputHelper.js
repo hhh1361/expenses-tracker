@@ -18,9 +18,9 @@
                     component.set('v.transaction', {
                         sobjectType: 'Transaction__c',
                         Date__c: '',
-                        Category__c: 'Food',
+                        Category__c: '',
                         Comment__c: '',
-                        Value__c: Math.ceil(Math.random() * -10)
+                        Value__c: ''
                     });
                 }
 

@@ -14,9 +14,9 @@
         type="Transaction__c"
         default="{'sobjectType' : 'Transaction__c',
                 Date__c: '',
-                Category__c: 'Food',
+                Category__c: '',
                 Comment__c : '',
-                Value__c : '-5'}"
+                Value__c : ''}"
     />
     <!-- in case of adding new picklist values -->
     <aura:attribute name="options" type="List" />
