@@ -8,6 +8,7 @@
             if (state === 'SUCCESS') {
                 const sortedArray = helper.sort(response.getReturnValue());
                 component.set('v.transactions', sortedArray);
+                component.set('v.balance', `Current balance: ${sortedArray.reduce((acc, i) => acc + i.Value__c, 0)}`);
                 component.set('v.isLoading', false);
                 console.log(`Loading completed in  ${(Date.now() - time) / 1000} seconds.`);
             } else {

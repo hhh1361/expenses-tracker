@@ -20,7 +20,7 @@
     handleSubmit: function(component, event, helper) {
         // save/change transaction + update records table
         const transaction = component.get('v.transaction');
-        if (transaction.Date__c && transaction.Category__c && transaction.Value__c) {
+        if (transaction.Date__c && transaction.Category__c && !isNaN(transaction.Value__c)) {
             helper.saveTransaction(component, transaction);
         } else {
             component.set('v.isWarning', true);
