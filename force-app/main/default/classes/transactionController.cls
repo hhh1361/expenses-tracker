@@ -1,7 +1,12 @@
 public with sharing class TransactionController {
     @AuraEnabled
     public static List<Transaction__c> getTransactionList() {
-        return [SELECT Id, Name, Category__c, Comment__c, Date__c, Value__c FROM Transaction__c];
+        Id currentUserId = UserInfo.getUserId();
+        return [
+            SELECT Id, Name, Category__c, Comment__c, Date__c, Value__c
+            FROM Transaction__c
+            WHERE CreatedById = :currentUserId
+        ];
     }
 
     @AuraEnabled
@@ -18,16 +23,13 @@ public with sharing class TransactionController {
     @AuraEnabled
     // "transaction" parameter-name is reserved
     public static Transaction__c saveTransaction(Transaction__c transactionItem) {
-        System.debug(transactionItem);
         upsert transactionItem;
         return transactionItem;
     }
 
     @AuraEnabled
     public static Transaction__c deleteTransaction(Transaction__c transactionItem) {
-        System.debug('delete');
         delete transactionItem;
-        System.debug(transactionItem);
         return transactionItem;
     }
 
