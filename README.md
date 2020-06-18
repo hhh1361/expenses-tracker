@@ -1,15 +1,13 @@
 # Expenses Tracked  
 Link:  
-https://login.salesforce.com/
-You can ask me for creds if you want to try it.
+https://login.salesforce.com/  
+You can ask me for creds if you want to try it yourself.
 ---
-
-### Salesforce technologies:  
-Aura components, Apex.
-
+### Technologies:  
+##### JS, Apex, Aura components.
 ---
 ### Description:  
-Application to track budget. You have a complete set of tools to work with transactions. Information can be presented in the form of tables, graphs, charts.
+##### Application to track budget. You have a complete set of tools to work with transactions. Information can be presented in the form of tables, graphs, charts.
 --- 
 
 Краткое описание:  
